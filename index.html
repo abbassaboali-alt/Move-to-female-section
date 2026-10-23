@@ -10,6 +10,11 @@
     <meta property="og:type" content="website" />
     <meta name="twitter:card" content="summary_large_image" />
 
+    <!-- Warm up the API connection without fetching private data before authentication. -->
+    <link rel="dns-prefetch" href="//api-prudle.abbassaboali.workers.dev">
+    <link rel="preconnect" href="https://api-prudle.abbassaboali.workers.dev" crossorigin>
+    <link rel="modulepreload" href="./assets/index-BvsDlwr9-REGISTRATION-DATE.js" crossorigin>
+    <link rel="preload" as="style" href="./assets/index-CJ3nw2K6.css">
     <!-- Fonts: Tajawal -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -35,11 +40,24 @@
         });
       })();
     </script>
-    <script type="module" crossorigin src="./assets/index-BvsDlwr9-REAL-DATA-ONLY.js"></script>
+    <script type="module" crossorigin src="./assets/index-BvsDlwr9-REGISTRATION-DATE.js"></script>
     <link rel="stylesheet" crossorigin href="./assets/index-CJ3nw2K6.css">
   </head>
   <body>
     <div id="root"></div>
+    <div id="prudle-initial-loading" role="status" aria-live="polite" style="position:fixed;inset:0;z-index:1000;background:#f4f6fb;display:flex;align-items:center;justify-content:center;font-family:Tajawal,Arial,sans-serif;color:#164478;pointer-events:none">
+      <div style="text-align:center"><div style="font-size:22px;font-weight:900">Prudle — الترحيل للدورات</div><div style="margin-top:12px;font-size:14px">جارٍ تجهيز الصفحة...</div></div>
+    </div>
+    <script>
+      (function(){
+        const root=document.getElementById("root"),loading=document.getElementById("prudle-initial-loading");
+        const done=()=>{if(root.childElementCount>0){loading.remove();observer.disconnect();}};
+        const observer=new MutationObserver(done);
+        observer.observe(root,{childList:true});done();
+        // Never mask a startup failure indefinitely.
+        setTimeout(()=>{if(loading.isConnected){loading.querySelector("div div:last-child").textContent="التحميل يستغرق وقتًا أطول من المعتاد. تحقق من الاتصال.";loading.style.pointerEvents="none";}},12000);
+      })();
+    </script>
   </body>
 </html>
 
