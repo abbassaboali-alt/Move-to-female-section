@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Course Migration — Prudle | الترحيل للدورات</title>
+    <meta name="description" content="Student course migration, promotion, and registration management system for Prudle Education." />
+    <meta property="og:title" content="Course Migration — Prudle | الترحيل للدورات" />
+    <meta property="og:description" content="Student course migration, promotion, and registration management system for Prudle Education." />
+    <meta property="og:type" content="website" />
+    <meta name="twitter:card" content="summary_large_image" />
+
+    <!-- Fonts: Tajawal -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;900&display=swap" rel="stylesheet" />
+
+    <!-- FontAwesome 6.5 -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+
+    <script>
+      (function(){
+        'use strict';
+        const login='https://www.prudle-education.com/log-in-out';
+        const host=location.hostname.toLowerCase();
+        const allowed=['www.prudle-education.com','prudle-education.com','abbassaboali-alt.github.io','app.prudle.edu.sa'];
+        const dev=host==='localhost'||host==='127.0.0.1'||host.endsWith('.run.app')||host.endsWith('.webcontainer.io');
+        if(!dev&&(location.protocol!=='https:'||!allowed.includes(host))){location.replace(login);return;}
+        window.addEventListener('keydown',e=>{if((e.ctrlKey||e.metaKey)&&e.key.toLowerCase()==='s')e.preventDefault();},{capture:true});
+        // Do not clear login state or expire sessions on a change of calendar day.
+        // The Cloudflare Worker validates the Firebase token and permissions.
+        window.addEventListener('message',e=>{
+          if(!['https://www.prudle-education.com','https://prudle-education.com','https://app.prudle.edu.sa'].includes(e.origin))return;
+          if(e.data==='PRUDLE_LOGOUT')location.replace(login);
+        });
+      })();
+    </script>
+    <script type="module" crossorigin src="./assets/index-BvsDlwr9-FIXED.js"></script>
+    <link rel="stylesheet" crossorigin href="./assets/index-CJ3nw2K6.css">
+  </head>
+  <body>
+    <div id="root"></div>
+  </body>
+</html>
+
